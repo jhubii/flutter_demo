@@ -32,14 +32,4 @@ class AuthService {
       return null;
     }
   }
-
-  Future<void> logout() async {
-    await _auth.signOut();
-  }
-
-  User? currentUser() {
-    final user = _auth.currentUser;
-    if (user == null) return null;
-    return User.fromFirebaseUser(user);
-  }
 }

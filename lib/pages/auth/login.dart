@@ -1,5 +1,5 @@
 import 'package:firebase_demo/components/inputField.dart';
-import 'package:firebase_demo/models/user.dart';
+import 'package:firebase_demo/models/user.dart' as firebase_auth;
 import 'package:firebase_demo/pages/auth/register.dart';
 import 'package:firebase_demo/pages/main/home.dart';
 import 'package:firebase_demo/services/authService.dart';
@@ -61,7 +61,7 @@ class Login extends StatelessWidget {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final User? user = await _authService.login(
+                    final firebase_auth.User? user = await _authService.login(
                       email: emailController.text,
                       password: passwordController.text,
                     );

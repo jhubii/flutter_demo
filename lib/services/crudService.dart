@@ -8,12 +8,13 @@ class CrudService {
     await _notes.add({'title': title, 'content': content});
   }
 
-  Future<List<Note>> getNotes() async {
-    final snapshot = await _notes.get();
-    return snapshot.docs.map((doc) {
-      final data = doc.data();
-      return Note(id: doc.id, title: data['title'], content: data['content']);
-    }).toList();
+  Stream<List<Note>> getNotesStream() {
+    return _notes.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        final data = doc.data();
+        return Note(id: doc.id, title: data['title'], content: data['content']);
+      }).toList();
+    });
   }
 
   Future<void> updateNote(String id, String title, String content) async {
